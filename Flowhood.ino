@@ -18,8 +18,7 @@ int pressed2 = false;
 Servo spray;
 Servo ventservo;
 Servo ventservo2;
-/*int u = 0 ;
-int y = 0;*/
+
 
 void setup() {
   //pinMode(enA, OUTPUT);
@@ -38,8 +37,7 @@ void setup() {
   pinMode( pwmPin, OUTPUT);
   spray.write(10);
 
-  /*digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);*/
+
 }
 void loop() {
   //Part A doorsystems
@@ -62,11 +60,11 @@ void loop() {
       digitalWrite(in1, HIGH);
       digitalWrite(in2, LOW);
       delay(500);
-      rotDirection = 1;
+
     }
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
-    //rotDirection = 1;
+    rotDirection = 1; //first direction
   }
   // button to change rotation  direction
   if (pressed == false && rotDirection == 1) {
@@ -80,41 +78,21 @@ void loop() {
     }
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
-    rotDirection = 0;
+    rotDirection = 0; //second direction
   }
 
 
   //part B Spray system
+  // Debounce
   if (digitalRead(button2) == true) {
     pressed2 = !pressed2;
   }  
   while (digitalRead(button2) == true);
   delay(20);
-  
- /* if (pressed2 == true && rotDirection == 0) {
-    for (pos = 10; pos => 0; pos--) {
-      spray.write(pos);
-      delay(30*1000);
-    }
-    for (pos = 0; pos <= 10; pos++) {
-      spray.write(pos);
-      delay(5);
-    }
-    for (pos = 10; pos => 0; pos--) {
-  }
-  */
+
   //start spray
   if (pressed2 == true) {  //I set the rotdirection to ensure that when the 2nd button is pressed when door is up, it wont spray.
-    
-      /*for (pos = 10; pos < 35; pos++) {
-        spray.write(pos);
-        // wait 15 ms for servo to reach the position
-        delay(15);
-        }
-      if( pos = 35) {
-        spray.write(10);
-        delay(2*1000);
-      }*/
+
        if(s<3){
     // Wait for 15 millisecond(s)
     spray.write(40);
